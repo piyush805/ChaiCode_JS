@@ -13,10 +13,16 @@
       constructor() {
         this.library = "React";
         this.server = "https://localhost:3000";
-        //requirement
+        //requirement: We want reference to the button
+        /**
+            document.querySelector("button");
+            .addEventListener("click", this.handleClick); 
+            // handleClick method of function gets attached to click event
+            // But inside it, 'this' refers to the button element and not the instance created by the constructor - we are not able to access library and server properties
+        */
         document
           .querySelector("button")
-          // .addEventListener("click", this.handleClick); // here we have to bind earlier context and pass it on to next context- this is done with bind
+          // With bind, we can pass current instance this into next function
           .addEventListener("click", this.handleClick.bind(this));
       }
       handleClick() {
